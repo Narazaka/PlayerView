@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+using System;
 using UdonSharp;
 using UnityEngine;
 using VRC.SDK3.UdonNetworkCalling;
@@ -13,6 +14,12 @@ namespace UdonScripts
         [SerializeField] SyncPlayerView followerSource;
 
         [UdonSynced, FieldChangeCallback(nameof(targetPlayerId))] ushort _targetPlayerId;
+
+        // Narazaka.VRChat.PlayerSelectUI.PlayerSelectReceiver
+        [NonSerialized]
+        public VRCPlayerApi _selectedPlayer;
+        // Narazaka.VRChat.PlayerSelectUI.PlayerSelectReceiver
+        public void _OnSelectPlayer() => _SetTargetPlayerSync(_selectedPlayer);
 
         public ushort targetPlayerId
         {
