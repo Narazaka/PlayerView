@@ -21,6 +21,10 @@ https://github.com/Narazaka/PlayerView/releases/latest から `net.narazaka.vrch
 3. `SyncPlayerView/Selector` の `_SetTargetPlayerIdSync(int playerId)` を呼ぶようにUdonを設定する
   - たとえば [Player Select UI](https://github.com/Narazaka/PlayerSelectUI) の `Receiver` を `SyncPlayerView/Selector` に設定すると動きます。
 
+## Changelog
+
+- v1.0.0: リリース
+
 ## License
 
 [Zlib License](LICENSE.txt)
