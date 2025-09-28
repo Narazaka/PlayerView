@@ -10,9 +10,10 @@
   "license": "Zlib",
   "type": "tool",
   "url" : "https://github.com/Narazaka/PlayerView.git",
+  "documentationUrl": "https://github.com/Narazaka/PlayerView#player-view",
+  "changelogUrl": "https://github.com/Narazaka/PlayerView#changelog",
   "unity": "2022.3",
   "vpmDependencies": {
-    "com.vrchat.avatars": ">=3.7.5",
     "com.vrchat.worlds": ">=3.7.5"
   }
 }

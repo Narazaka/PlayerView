@@ -40,14 +40,14 @@ namespace UdonScripts
         [PublicAPI]
         public void _SetTargetPlayerSync(VRCPlayerApi player)
         {
-            _SetTargetPlayerIdSync(Utilities.IsValid(player) ? (ushort)player.playerId : (ushort)0);
+            _SetTargetPlayerIdSync(Utilities.IsValid(player) ? player.playerId : 0);
         }
 
         [PublicAPI]
         [NetworkCallable]
-        public void _SetTargetPlayerIdSync(ushort playerId)
+        public void _SetTargetPlayerIdSync(int playerId)
         {
-            targetPlayerId = playerId;
+            targetPlayerId = (ushort)playerId;
             if (Networking.IsOwner(gameObject))
             {
                 RequestSerialization();

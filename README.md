@@ -1,6 +1,6 @@
 # Player View (Sync)
 
-desc
+プレイヤーの視点を共有する
 
 ## Install
 
@@ -16,7 +16,10 @@ https://github.com/Narazaka/PlayerView/releases/latest から `net.narazaka.vrch
 
 ## Usage
 
-TODO
+1. 処理のメインである `SyncPlayerView` プレハブをシーンに配置する
+2. 画面である `PlayerDisplay` プレハブをシーンに配置する
+3. `SyncPlayerView/Selector` の `_SetTargetPlayerIdSync(int playerId)` を呼ぶようにUdonを設定する
+  - たとえば [Player Select UI](https://github.com/Narazaka/PlayerSelectUI) の `Receiver` を `SyncPlayerView/Selector` に設定すると動きます。
 
 ## License
 
