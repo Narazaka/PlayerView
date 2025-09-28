@@ -24,6 +24,7 @@ https://github.com/Narazaka/PlayerView/releases/latest から `net.narazaka.vrch
 
 ## Changelog
 
+- v2.0.1: 依存関係バージョン修正
 - v2.0.0: 設計変更
 - v1.0.0: リリース
 
