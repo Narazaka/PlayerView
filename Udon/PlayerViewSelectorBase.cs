@@ -12,6 +12,23 @@ namespace UdonScripts
     {
         [SerializeField] SyncPlayerView followerSource;
 
+        [SerializeField] bool _live = true;
+
+        [PublicAPI]
+        public bool live
+        {
+            get => _live;
+            set
+            {
+                _live = value;
+                SetActives();
+            }
+        }
+
+        [PublicAPI] public void _ToggleLive() => live = !live;
+        [PublicAPI] public void _SetLiveOn() => live = true;
+        [PublicAPI] public void _SetLiveOff() => live = false;
+
         // Narazaka.VRChat.PlayerSelectUI.PlayerSelectReceiver
         [NonSerialized]
         public VRCPlayerApi _selectedPlayer;
@@ -53,7 +70,7 @@ namespace UdonScripts
             foreach (var p in players)
             {
                 var c = Networking.FindComponentInPlayerObjects(p, followerSource);
-                c.gameObject.SetActive(p.playerId == targetPlayerId);
+                c.gameObject.SetActive(live && p.playerId == targetPlayerId);
             }
         }
     }
