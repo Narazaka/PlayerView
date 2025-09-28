@@ -14,6 +14,6 @@
   "changelogUrl": "https://github.com/Narazaka/PlayerView#changelog",
   "unity": "2022.3",
   "vpmDependencies": {
-    "com.vrchat.worlds": ">=3.7.5"
+    "com.vrchat.worlds": ">=3.8.1"
   }
 }
