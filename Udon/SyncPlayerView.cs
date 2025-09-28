@@ -11,7 +11,6 @@ namespace UdonScripts
         [SerializeField] Transform scaler;
         [SerializeField] Transform audioListener;
         [SerializeField] bool resetCullingMatrix;
-        [SerializeField] RenderTexture copyTargetTexture;
         [UdonSynced] Vector3 positionDiff = Vector3.zero;
         [UdonSynced] Quaternion rotationDiff = Quaternion.identity;
         [UdonSynced] float scale = 1f;
