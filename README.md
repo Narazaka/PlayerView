@@ -20,7 +20,7 @@ https://github.com/Narazaka/PlayerView/releases/latest から `net.narazaka.vrch
 2. 画面である `PlayerDisplay` プレハブをシーンに配置する
 3. `SyncPlayerView/SyncSelector` または `SyncPlayerView/LocalSelector` のどちらか使う方をActiveにし、使わない方をEditorOnlyにする
 4. `SyncPlayerView/SyncSelector` または `SyncPlayerView/LocalSelector` の `_SetTargetPlayerId(int playerId)` を呼ぶようにUdonを設定する
-  - たとえば [Player Select UI](https://github.com/Narazaka/PlayerSelectUI) の `Receiver` を `SyncPlayerView/SyncSelector` に設定すると動きます。
+  - たとえば [Player Select UI](https://github.com/Narazaka/PlayerSelectUI) の `Receiver` に `SyncPlayerView/SyncSelector` を設定すると動きます。
 
 ## Changelog
 
