@@ -5,6 +5,7 @@ using UnityEngine;
 using VRC.SDK3.UdonNetworkCalling;
 using VRC.SDKBase;
 using VRC.Udon;
+using VRC.Udon.Common.Interfaces;
 
 namespace UdonScripts
 {
@@ -44,6 +45,7 @@ namespace UdonScripts
             {
                 _targetPlayerId = value;
                 SetActives();
+                NotifyListeners("_OnTargetPlayerIdChanged");
             }
         }
 
@@ -75,8 +77,32 @@ namespace UdonScripts
             VRCPlayerApi.GetPlayers(players);
             foreach (var p in players)
             {
-                var c = Networking.FindComponentInPlayerObjects(p, followerSource);
+                var c = SyncPlayerView(p);
                 c.gameObject.SetActive(live && p.playerId == targetPlayerId);
+            }
+        }
+
+        public SyncPlayerView SyncPlayerView(VRCPlayerApi player)
+        {
+            return (SyncPlayerView)Networking.FindComponentInPlayerObjects(player, followerSource);
+        }
+
+        IUdonEventReceiver[] listeners = new IUdonEventReceiver[0];
+
+        public void AddListener(IUdonEventReceiver receiver)
+        {
+            if (Array.IndexOf(listeners, receiver) >= 0) return;
+            var newListeners = new IUdonEventReceiver[listeners.Length + 1];
+            Array.Copy(listeners, newListeners, listeners.Length);
+            newListeners[newListeners.Length - 1] = receiver;
+            listeners = newListeners;
+        }
+
+        void NotifyListeners(string eventName)
+        {
+            foreach (var l in listeners)
+            {
+                l.SendCustomEvent(eventName);
             }
         }
     }

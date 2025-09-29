@@ -11,6 +11,20 @@ namespace UdonScripts
         [SerializeField] Transform scaler;
         [SerializeField] Transform audioListener;
         [SerializeField] bool resetCullingMatrix;
+        [SerializeField, UdonSynced, FieldChangeCallback(nameof(nearClipPlane))] float _nearClipPlane = 0.12f;
+        public float nearClipPlane
+        {
+            get => _nearClipPlane;
+            set
+            {
+                _nearClipPlane = value;
+                var cam = targetCamera;
+                if (cam != null)
+                {
+                    cam.nearClipPlane = value;
+                }
+            }
+        }
         [UdonSynced] Vector3 positionDiff = Vector3.zero;
         [UdonSynced] Quaternion rotationDiff = Quaternion.identity;
         [UdonSynced] float scale = 1f;
