@@ -35,10 +35,16 @@ namespace UdonScripts
         // Narazaka.VRChat.PlayerSelectUI.PlayerSelectReceiver
         public void _OnSelectPlayer() => _SetTargetPlayer(_selectedPlayer);
 
-        public abstract ushort targetPlayerId
+        ushort _targetPlayerId;
+
+        public ushort targetPlayerId
         {
-            get;
-            protected set;
+            get => _targetPlayerId;
+            protected set
+            {
+                _targetPlayerId = value;
+                SetActives();
+            }
         }
 
         public VRCPlayerApi targetPlayer
@@ -59,7 +65,7 @@ namespace UdonScripts
             targetPlayerId = (ushort)playerId;
         }
 
-        protected void SetActives()
+        void SetActives()
         {
             if (!Utilities.IsValid(targetPlayer))
             {

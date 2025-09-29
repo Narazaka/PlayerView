@@ -2,35 +2,67 @@
 using UdonSharp;
 using VRC.SDK3.UdonNetworkCalling;
 using VRC.SDKBase;
+using UnityEngine;
 
 namespace UdonScripts
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class SyncPlayerViewSelector : PlayerViewSelectorBase
     {
-        [UdonSynced, FieldChangeCallback(nameof(targetPlayerId))] ushort _targetPlayerId;
-        public override ushort targetPlayerId
+        [SerializeField] bool _sync = true;
+
+        [PublicAPI]
+        public bool sync
         {
-            get => _targetPlayerId;
+            get => _sync;
+            set
+            {
+                _sync = value;
+                if (value)
+                {
+                    targetPlayerId = syncTargetPlayerId;
+                }
+            }
+        }
+
+        [UdonSynced, FieldChangeCallback(nameof(syncTargetPlayerId))] ushort _syncTargetPlayerId;
+        public ushort syncTargetPlayerId
+        {
+            get => _syncTargetPlayerId;
             protected set
             {
-                _targetPlayerId = value;
-                SetActives();
+                _syncTargetPlayerId = value;
+                if (sync)
+                {
+                    targetPlayerId = value;
+                }
             }
         }
 
         [PublicAPI]
-        [NetworkCallable]
         public override void _SetTargetPlayerId(int playerId)
         {
-            base._SetTargetPlayerId(playerId);
+            if (sync)
+            {
+                _SetTargetPlayerIdSync(playerId);
+            }
+            else
+            {
+                base._SetTargetPlayerId(playerId);
+            }
+        }
+
+        [NetworkCallable]
+        public void _SetTargetPlayerIdSync(int playerId)
+        {
+            syncTargetPlayerId = (ushort)playerId;
             if (Networking.IsOwner(gameObject))
             {
                 RequestSerialization();
             }
             else
             {
-                SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.Owner, nameof(_SetTargetPlayerId), playerId);
+                SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.Owner, nameof(_SetTargetPlayerIdSync), playerId);
             }
         }
     }
