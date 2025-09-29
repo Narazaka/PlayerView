@@ -44,7 +44,7 @@ namespace Narazaka.VRChat.PlayerView
             }
         }
 
-        public void _OnTargetPlayerIdChanged()
+        public void _OnSelectedPlayerChanged()
         {
             SetUI();
         }

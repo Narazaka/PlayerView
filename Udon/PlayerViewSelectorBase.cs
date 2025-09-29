@@ -35,6 +35,11 @@ namespace Narazaka.VRChat.PlayerView
         public VRCPlayerApi _selectedPlayer;
         // Narazaka.VRChat.PlayerSelectUI.PlayerSelectReceiver
         public void _OnSelectPlayer() => _SetTargetPlayer(_selectedPlayer);
+        // Narazaka.VRChat.PlayerSelectUI.PlayerSelectReceiver
+        [NonSerialized]
+        public IUdonEventReceiver _selectChangeReceiver;
+        // Narazaka.VRChat.PlayerSelectUI.PlayerSelectReceiver
+        public void _AddSelectChangeListener() => AddListener(_selectChangeReceiver);
 
         ushort _targetPlayerId;
 
@@ -45,7 +50,8 @@ namespace Narazaka.VRChat.PlayerView
             {
                 _targetPlayerId = value;
                 SetActives();
-                NotifyListeners("_OnTargetPlayerIdChanged");
+                _selectedPlayer = targetPlayer;
+                NotifyListeners("_OnSelectedPlayerChanged");
             }
         }
 
