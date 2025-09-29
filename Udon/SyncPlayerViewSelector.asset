@@ -21,7 +21,7 @@ MonoBehaviour:
   compiledVersion: 2
   behaviourSyncMode: 4
   hasInteractEvent: 0
-  scriptID: 2163353999990756951
+  scriptID: -7801712584578062031
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
@@ -62,7 +62,7 @@ MonoBehaviour:
       Data: 3|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: UdonScripts.SyncPlayerView, Narazaka.VRChat.PlayerView
+      Data: Narazaka.VRChat.PlayerView.SyncPlayerView, Narazaka.VRChat.PlayerView
     - Name: 
       Entry: 8
       Data: 

@@ -7,7 +7,7 @@ using VRC.SDKBase;
 using VRC.Udon;
 using VRC.Udon.Common.Interfaces;
 
-namespace UdonScripts
+namespace Narazaka.VRChat.PlayerView
 {
     public abstract class PlayerViewSelectorBase : UdonSharpBehaviour
     {

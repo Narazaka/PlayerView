@@ -1,6 +1,6 @@
 ﻿using UdonSharp;
 
-namespace UdonScripts
+namespace Narazaka.VRChat.PlayerView
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     public class LocalPlayerViewSelector : PlayerViewSelectorBase

@@ -2,7 +2,7 @@
 using UnityEngine;
 using VRC.SDKBase;
 
-namespace UdonScripts
+namespace Narazaka.VRChat.PlayerView
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class SyncPlayerView : UdonSharpBehaviour

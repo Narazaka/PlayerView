@@ -4,7 +4,7 @@ using VRC.SDK3.UdonNetworkCalling;
 using VRC.SDKBase;
 using UnityEngine;
 
-namespace UdonScripts
+namespace Narazaka.VRChat.PlayerView
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class SyncPlayerViewSelector : PlayerViewSelectorBase
