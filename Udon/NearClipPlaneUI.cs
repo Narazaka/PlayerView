@@ -57,7 +57,7 @@ namespace Narazaka.VRChat.PlayerView
             var syncPlayerView = syncPlayerViewSelector.SyncPlayerView(localPlayer);
             if (syncPlayerView == null) return;
             slider.SetValueWithoutNotify(syncPlayerView.nearClipPlane);
-            valueField.SetTextWithoutNotify(syncPlayerView.nearClipPlane.ToString("F2"));
+            valueField.SetTextWithoutNotify(syncPlayerView.nearClipPlane.ToString("F4"));
         }
     }
 }
