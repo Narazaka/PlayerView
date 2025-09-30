@@ -10,6 +10,8 @@ namespace Narazaka.VRChat.PlayerView
         [SerializeField] Transform followRoot;
         [SerializeField] Transform scaler;
         [SerializeField] Transform audioListener;
+        [SerializeField] PlayerViewSelectorBase playerViewSelector;
+        [SerializeField] NearClipSave nearClipSave;
         [SerializeField] bool resetCullingMatrix;
         [SerializeField, UdonSynced, FieldChangeCallback(nameof(nearClipPlane))] float _nearClipPlane = 0.12f;
         public float nearClipPlane
@@ -17,12 +19,14 @@ namespace Narazaka.VRChat.PlayerView
             get => _nearClipPlane;
             set
             {
+                if (_nearClipPlane == value) return;
                 _nearClipPlane = value;
                 var cam = targetCamera;
                 if (cam != null)
                 {
                     cam.nearClipPlane = value;
                 }
+                nearClipSave.Save(value);
             }
         }
         [UdonSynced] Vector3 positionDiff = Vector3.zero;
@@ -47,21 +51,25 @@ namespace Narazaka.VRChat.PlayerView
         public override void OnPlayerJoined(VRCPlayerApi player)
         {
             syncInitialized = true;
+            LoadNearClipPlane();
             CalcBoneDiff(player);
         }
 
         public override void OnAvatarChanged(VRCPlayerApi player)
         {
+            LoadNearClipPlane();
             CalcBoneDiff(player);
         }
 
         public override void OnAvatarEyeHeightChanged(VRCPlayerApi player, float prevEyeHeightAsMeters)
         {
+            LoadNearClipPlane();
             CalcBoneDiff(player);
         }
 
         void OnEnable()
         {
+            LoadNearClipPlane();
             CalcBoneDiff(Networking.GetOwner(gameObject));
             targetCamera.enabled = true;
         }
@@ -79,6 +87,16 @@ namespace Narazaka.VRChat.PlayerView
             scale = 1f / audioListener.transform.localScale.x;
 
             RequestSerialization();
+        }
+
+        void LoadNearClipPlane()
+        {
+            var val = nearClipSave.Load();
+            if (val > 0)
+            {
+                nearClipPlane = val;
+            }
+            playerViewSelector._OnNearClipChanged();
         }
 
         void OnPreCull()

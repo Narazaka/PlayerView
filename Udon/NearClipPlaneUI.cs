@@ -49,6 +49,11 @@ namespace Narazaka.VRChat.PlayerView
             SetUI();
         }
 
+        public void _OnNearClipChanged()
+        {
+            SetUI();
+        }
+
         void SetUI()
         {
             var localPlayer = Networking.LocalPlayer;

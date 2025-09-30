@@ -93,6 +93,11 @@ namespace Narazaka.VRChat.PlayerView
             return (SyncPlayerView)Networking.FindComponentInPlayerObjects(player, followerSource);
         }
 
+        public void _OnNearClipChanged()
+        {
+            NotifyListeners("_OnNearClipChanged");
+        }
+
         IUdonEventReceiver[] listeners = new IUdonEventReceiver[0];
 
         public void AddListener(IUdonEventReceiver receiver)
