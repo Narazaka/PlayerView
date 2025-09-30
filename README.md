@@ -24,6 +24,7 @@ https://github.com/Narazaka/PlayerView/releases/latest から `net.narazaka.vrch
 
 ## Changelog
 
+- v2.3.0: near clip ui改善・保存するように
 - v2.2.0: カメラカリング距離の手動調整 / 視点切り替えを同期するかどうか選べるように / 設定UIを追加
 - v2.1.0: ローカルで有効無効を切り替える `live`, `_ToggleLive`, `_SetLiveOn`, `_SetLiveOff` APIを追加
 - v2.0.1: 依存関係バージョン修正
