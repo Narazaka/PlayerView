@@ -13,14 +13,12 @@ namespace Narazaka.VRChat.PlayerView
 
         public float Load()
         {
-            Debug.Log($"NearClipSave: Load");
             var avatarId = AvatarId();
             return Get(FindIndex(avatarId));
         }
 
         public void Save(float value)
         {
-            Debug.Log($"NearClipSave: Save");
             var avatarId = AvatarId();
             var index = FindIndex(avatarId);
             if (index < 0)
@@ -55,7 +53,6 @@ namespace Narazaka.VRChat.PlayerView
             var len = nearClipPlanes.Length;
             for (var i = 0; i < len; i += 2)
             {
-                Debug.Log($"NearClipSave: {i}: {nearClipPlanes[i]} == {avatarId} {nearClipPlanes[i] == avatarId} {Mathf.Approximately(nearClipPlanes[i], avatarId)} {Mathf.Abs(nearClipPlanes[i] - avatarId)}");
                 if (Mathf.Approximately(nearClipPlanes[i], avatarId))
                 {
                     return i;
